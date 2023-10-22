@@ -1,0 +1,16 @@
+
+Determine the proper order to cut the lines of a shape/part
+
+
+Order parts based on a way that makes sense
+This will be very difficult as shapes become more complex. Obviously left to right is fairly simple,
+however a zipper style is most efficient to cut and while in my head this seems simple the fact that
+igems struggles oftentimes makes me think its not quite that simple.
+
+perhaps order left to right first and then apply a zipper style afterwards?
+
+
+Add vars that change based on machin like decimal precision changing between torch and wj etc
+
+
+
