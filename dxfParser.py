@@ -7,9 +7,13 @@ from ezdxf.math import Vec3
 from Coordinate import *
 from Shape import *
 from Entity import *
+from Visualise import *
 
-def getCoords(dxfFile):
+global fPointAcc
+def getCoords(dxfFile, machine, fAcc):
     global coords
+    global fPointAcc 
+    fPointAcc= fAcc
     try:
         source = ezdxf.readfile(dxfFile)
     except IOError:
@@ -26,7 +30,7 @@ def getCoords(dxfFile):
         getCoordsFromE(e)
 
     offsetX, offsetY = offsetCoords()
-    offsetAllXY(offsetX, offsetY)
+    offsetAllXY(offsetX, offsetY, machine)
     #parse the shapes
     isOneShape()
     sortClockwise()
@@ -38,7 +42,7 @@ def getCoords(dxfFile):
                 if c.end == True:
                     out.write("\n")
     out.close()
-
+    plot(coords)
     return coords
 
 
@@ -59,16 +63,17 @@ def offsetCoords():
                     lowestY = c.center[1]
     return (abs(lowestX), abs(lowestY))
 
-def offsetAllXY(xOffset, yOffset):
+def offsetAllXY(xOffset, yOffset, machine):
+    global fPointAcc
     global coords
     for e in coords:
         for c in e.primitives:
             if c.type == EType.END:
                 break
-            c.x = round(c.x + xOffset, 3)
-            c.y = round(c.y + yOffset, 3)
+            c.x = round(c.x + xOffset + 1, fPointAcc)
+            c.y = round(c.y + yOffset + 1, fPointAcc)
             if c.type == EType.ARC or c.type==EType.CIRCLE:
-                c.center = [c.center[0] + xOffset, c.center[1] + yOffset]
+                c.center = [round(c.center[0] + xOffset + 1, fPointAcc), round(c.center[1] + yOffset + 1, fPointAcc)]
     return
 
 def getCoordsFromE(e):

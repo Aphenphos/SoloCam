@@ -10,8 +10,16 @@ def main():
             print("Parsing DXF file")
             print("Parsing Coords")
             machine = sys.argv[3]
-            coords = getCoords(infile)
-            parseCoords(coords, machine)
+            fPointAccuracy = 0
+            match machine:
+                case "burny":
+                    fPointAccuracy = 4
+                case "atr":
+                    fPointAccuracy = 4
+                case "torch":
+                    fPointAccuracy = 3
+            coords = getCoords(infile, machine, fPointAccuracy)
+            parseCoords(coords, machine, fPointAccuracy)
         case "d":
             connectPoints(infile)
 
