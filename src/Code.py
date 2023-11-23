@@ -34,8 +34,3 @@ class MCODE(Enum):
     M73 = 73 #LOAD MODAL STATE
     M245 = 245 #(WJ)START ABRASIVE
     M246 = 246 #(WJ)STOP ABRASIVE
-
-class MachPreamble():
-    PLASMA_PRE = "G70\nG90\nG92 X0 Y0\nF100.\nK0.125\n"
-    PLASMA_START = "M67\nM70\n"
-    PLASMA_STOP = "M73\nM69\n"

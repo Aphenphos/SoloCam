@@ -1,8 +1,0 @@
-Most basics are almost achieved other than lead in/out. 
-
-Future addons before creating a GUI
-
-add a way to determine if a part is nested within any amount of other parts
-eg a circle within a circle within a circle and so on (may not be the most useful but could be)
-
-Set flow rates add dwells etc

@@ -11,7 +11,7 @@ class EType(Enum):
 
 
 class Coordinate:
-    def __init__(self, type, x, y, radius = None, start = None, end = None, center=None):
+    def __init__(self, type, x, y, radius = None, start = None, end = None, center=None, angle=None):
         self.type = type
         self.x = x
         self.y = y
@@ -19,7 +19,7 @@ class Coordinate:
         self.start = start
         self.end = end
         self.center = center
-
+        self.angle = angle
     
     def toFile(self):
         match (self.type):
